@@ -1,13 +1,20 @@
-import { useState } from "react";
 import s from "./Options.module.css"
 
-const Options = ({ updateFeedback, }) => {
+const Options = ({results, updateFeedback, totalFeedback, reset }) => {
+
+    const btnResults = Object.keys(results);
     return (
         <div className={s.reviews}>
-            <button className={s.btn} onClick={() => updateFeedback('good')}>Good</button>
-            <button className={s.btn} onClick={() => updateFeedback('neutral')}>Neutral</button>
-            <button className={s.btn} onClick={() => updateFeedback('bad')}>Bad</button>
-            {/* <button className={s.btn}>Reset</button> */}
+            {btnResults.map(option => {
+                const capitalizedOption = option.charAt(0).toUpperCase() + option.slice(1);
+                return (
+                    <button key={option}
+                        onClick={() => updateFeedback(option)}>
+                        {capitalizedOption}
+                    </button>
+                );
+        })}
+            {(totalFeedback > 0) && <button className={s.btn} onClick={reset}>Reset</button>}
         </div>
     )
 }
