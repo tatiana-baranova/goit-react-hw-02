@@ -9,6 +9,7 @@ const Options = ({results, updateFeedback, totalFeedback, reset }) => {
                 const capitalizedOption = option.charAt(0).toUpperCase() + option.slice(1);
                 return (
                     <button key={option}
+                        className={s.btn}
                         onClick={() => updateFeedback(option)}>
                         {capitalizedOption}
                     </button>
